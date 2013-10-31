@@ -1,0 +1,47 @@
+ndp is a "natural date parser" library. It allows you to convert natural language user input to a more machine-friendly time value.
+
+## Demo
+An example utility is provided called readdate.lua, which reads lines from stdin, and 
+prints the interpreted date along with any text that wasn't considered part of the time 
+specification.
+
+## Examples
+
+today
+=> Sun Jun 21 23:45:57 2009 (1245624357) [?,?]
+
+feed the cat in the morning
+=> Mon Jun 22 09:30:09 2009 (1245659409): feed the cat [13,28]
+
+go shopping next tuesday
+=> Tue Jun 23 23:46:27 2009 (1245797187): go shopping next [17,25]
+
+service the car in September
+=> Mon Sep 21 23:46:48 2009 (1253573208): service the car [16,29]
+
+Watch the games in July 2012
+=> Sat Jul 21 23:48:06 2012 (1342910886): Watch the games [16,29]
+
+## Usage
+
+...is simple :)
+
+To get a time from an input string, simply do:
+
+   local ndp = require "ndp"; -- Load the ndp library
+   local mytime = ndp.when("tomorrow"); -- Get the date tomorrow
+   print(os.date("%c", mytime)); -- Print it out
+
+A slightly more advanced usage is extracting information in the input string which 
+was not concerned with the time. This is useful for extracting things like "feed the cat" 
+from "feed the cat tomorrow afternoon". ndp.when() returns 2 extra values which are the start 
+and finish positions of the text it actually used in the string. By removing the text between 
+these positions you will be left with the real data.
+
+   local ndp = require "ndp"; -- Load the ndp library
+   local mytime, startpos, endpos = ndb.when("tomorrow afternoon, feed the cat");
+   local message = (line:sub(1, start)..line:sub(finish, -1)) -- returns ", feed the cat"
+   -- To make things a bit neater, we can use Lua's gsub function to trim leftover spaces and
+   -- punctuation from the result:
+   message = message:gsub("^[%s%p]+", ""):gsub("[%s%p]+$", "");
+   print(message); -- feed the cat

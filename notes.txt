@@ -1,0 +1,20 @@
+
+when: [[in <month or year>]] || [[in <duration>]]
+[[<duration> after <when>]]
+the <number> <dayofweek> 
+
+"next" <"week"|day of week|month>
+"tomorrow"
+"on" <day of week>
+"in" <month|year>
+<"in"|"after"> <number> <"minutes"|"hours"|"days"|"months"|"years">
+"the" <ordinal> <day of week> "in" <month|year>
+<number> "weeks" <day of week>
+"on" <day of week> "in" <number> "weeks"
+
+"on" [date]
+"at" [time]
+
+date: <ordinal> <month>
+time: <number> PM
+
