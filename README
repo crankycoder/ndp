@@ -1,5 +1,7 @@
 ndp is a "natural date parser" library. It allows you to convert natural language user input to a more machine-friendly time value.
 
+This code is available under an MIT license, a copy can be found in the file `COPYING`.
+
 ## Demo
 An example utility is provided called readdate.lua, which reads lines from stdin, and 
 prints the interpreted date along with any text that wasn't considered part of the time 
